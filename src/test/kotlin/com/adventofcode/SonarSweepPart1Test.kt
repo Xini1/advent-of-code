@@ -6,7 +6,7 @@ import kotlin.test.Test
 /**
  * @author Maxim Tereshchenko
  */
-internal class SonarSweepTest {
+internal class SonarSweepPart1Test {
 
     @Test
     fun `given single measurement, then return 0`() {
