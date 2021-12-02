@@ -10,17 +10,30 @@ internal class Day2DivePart1Test {
 
     @Test
     fun `given forward 1 down 1, then return 1`() {
-        assertThat(multiplyFinalHorizontalPositionByFinalDepth(sequenceOf("forward 1", "down 1"))).isEqualTo(1)
+        assertThat(
+            multiplyFinalHorizontalPositionByFinalDepth(
+                sequenceOf("forward 1", "down 1"),
+                SimplePosition()
+            )
+        )
+            .isEqualTo(1)
     }
 
     @Test
     fun `given forward 1 up 1, then return -1`() {
-        assertThat(multiplyFinalHorizontalPositionByFinalDepth(sequenceOf("forward 1", "up 1"))).isEqualTo(-1)
+        assertThat(
+            multiplyFinalHorizontalPositionByFinalDepth(
+                sequenceOf("forward 1", "up 1"),
+                SimplePosition()
+            )
+        )
+            .isEqualTo(-1)
     }
 
     @Test
     fun `given up 1, then return 0`() {
-        assertThat(multiplyFinalHorizontalPositionByFinalDepth(sequenceOf("up 1"))).isEqualTo(0)
+        assertThat(multiplyFinalHorizontalPositionByFinalDepth(sequenceOf("up 1"), SimplePosition()))
+            .isEqualTo(0)
     }
 
     @Test
@@ -34,7 +47,8 @@ internal class Day2DivePart1Test {
                     "up 3",
                     "down 8",
                     "forward 2"
-                )
+                ),
+                SimplePosition()
             )
         )
             .isEqualTo(150)

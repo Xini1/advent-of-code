@@ -3,7 +3,7 @@ package com.adventofcode
 /**
  * @author Maxim Tereshchenko
  */
-fun multiplyFinalHorizontalPositionByFinalDepth(commands: Sequence<String>): Int {
+fun multiplyFinalHorizontalPositionByFinalDepth(commands: Sequence<String>, startingPosition: Position): Int {
     return commands.map { it.split(" ") }
         .map { it[0] to it[1].toInt() }
         .map {
@@ -14,16 +14,40 @@ fun multiplyFinalHorizontalPositionByFinalDepth(commands: Sequence<String>): Int
                 else -> throw IllegalArgumentException()
             }
         }
-        .fold(Position()) { position, command -> command.execute(position) }
+        .fold(startingPosition) { position, command -> command.execute(position) }
         .run { multiplyHorizontalPositionByDepth() }
 }
 
-private data class Position(private val depth: Int = 0, private val horizontal: Int = 0) {
+interface Position {
 
-    fun forwardBy(amount: Int) = copy(horizontal = horizontal + amount)
-    fun downBy(amount: Int) = copy(depth = depth + amount)
-    fun upBy(amount: Int) = downBy(-amount)
-    fun multiplyHorizontalPositionByDepth() = depth * horizontal
+    fun forwardBy(amount: Int): Position
+    fun downBy(amount: Int): Position
+    fun upBy(amount: Int): Position
+    fun multiplyHorizontalPositionByDepth(): Int
+}
+
+abstract class BasePosition(protected val depth: Int, protected val horizontal: Int) : Position {
+
+    override fun upBy(amount: Int) = downBy(-amount)
+    override fun multiplyHorizontalPositionByDepth() = depth * horizontal
+}
+
+class SimplePosition(depth: Int = 0, horizontal: Int = 0) : BasePosition(depth, horizontal) {
+
+    override fun forwardBy(amount: Int) = SimplePosition(depth, horizontal + amount)
+    override fun downBy(amount: Int) = SimplePosition(depth + amount, horizontal)
+}
+
+class AdvancedPosition(
+    depth: Int = 0,
+    horizontal: Int = 0,
+    private val aim: Int = 0
+) : BasePosition(depth, horizontal) {
+
+    override fun forwardBy(amount: Int) =
+        AdvancedPosition(depth + aim * amount, horizontal + amount, aim)
+
+    override fun downBy(amount: Int) = AdvancedPosition(depth, horizontal, aim + amount)
 }
 
 private abstract class SubmarineCommand(protected val amount: Int) {
@@ -47,9 +71,14 @@ private class UpCommand(amount: Int) : SubmarineCommand(amount) {
 }
 
 fun divePart1Answer() {
-    println(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("DiveInput")))
+    println(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("DiveInput"), SimplePosition()))
+}
+
+fun divePart2Answer() {
+    println(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("DiveInput"), AdvancedPosition()))
 }
 
 fun main() {
     divePart1Answer()
+    divePart2Answer()
 }
