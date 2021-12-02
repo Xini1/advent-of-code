@@ -17,11 +17,7 @@ fun measurementsInWindowLargerThanInPreviousWindow(measurements: Sequence<Int>):
 }
 
 fun measurementsFromFile() =
-    Thread.currentThread()
-        .contextClassLoader
-        .getResourceAsStream("SonarSweepInput")!!
-        .bufferedReader()
-        .lineSequence()
+    linesFromFile("SonarSweepInput")
         .map { it.toInt() }
 
 fun sonarSweepPart1Answer() {

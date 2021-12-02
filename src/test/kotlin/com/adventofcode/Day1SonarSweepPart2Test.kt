@@ -6,7 +6,7 @@ import kotlin.test.Test
 /**
  * @author Maxim Tereshchenko
  */
-internal class SonarSweepPart2Test {
+internal class Day1SonarSweepPart2Test {
 
     @Test
     fun `given single window, then return 0`() {
