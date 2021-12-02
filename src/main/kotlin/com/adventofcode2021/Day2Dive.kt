@@ -1,4 +1,4 @@
-package com.adventofcode
+package com.adventofcode2021
 
 /**
  * @author Maxim Tereshchenko
@@ -68,17 +68,4 @@ private class DownCommand(amount: Int) : SubmarineCommand(amount) {
 private class UpCommand(amount: Int) : SubmarineCommand(amount) {
 
     override fun execute(currentPosition: Position) = currentPosition.upBy(amount)
-}
-
-fun divePart1Answer() {
-    println(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("DiveInput"), SimplePosition()))
-}
-
-fun divePart2Answer() {
-    println(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("DiveInput"), AdvancedPosition()))
-}
-
-fun main() {
-    divePart1Answer()
-    divePart2Answer()
 }

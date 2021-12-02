@@ -1,5 +1,6 @@
-package com.adventofcode
+package com.adventofcode2021
 
+import com.linesFromFile
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
@@ -7,6 +8,17 @@ import kotlin.test.Test
  * @author Maxim Tereshchenko
  */
 internal class Day1SonarSweepPart2Test {
+
+    @Test
+    fun answer() {
+        assertThat(
+            measurementsInWindowLargerThanInPreviousWindow(
+                linesFromFile("2021/SonarSweepInput")
+                    .map { it.toInt() }
+            )
+        )
+            .isEqualTo(1457)
+    }
 
     @Test
     fun `given single window, then return 0`() {

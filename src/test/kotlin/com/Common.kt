@@ -1,4 +1,4 @@
-package com.adventofcode
+package com
 
 /**
  * @author Maxim Tereshchenko

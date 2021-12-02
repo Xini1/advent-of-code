@@ -1,5 +1,6 @@
-package com.adventofcode
+package com.adventofcode2021
 
+import com.linesFromFile
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
@@ -7,6 +8,12 @@ import kotlin.test.Test
  * @author Maxim Tereshchenko
  */
 internal class Day2DivePart1Test {
+
+    @Test
+    fun answer() {
+        assertThat(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("2021/DiveInput"), SimplePosition()))
+            .isEqualTo(1484118)
+    }
 
     @Test
     fun `given forward 1 down 1, then return 1`() {

@@ -1,4 +1,4 @@
-package com.adventofcode
+package com.adventofcode2021
 
 /**
  * @author Maxim Tereshchenko
@@ -14,29 +14,4 @@ fun measurementsInWindowLargerThanInPreviousWindow(measurements: Sequence<Int>):
         .map { it.first + it.second + it.third }
         .zipWithNext()
         .count { it.second > it.first }
-}
-
-fun measurementsFromFile() =
-    linesFromFile("SonarSweepInput")
-        .map { it.toInt() }
-
-fun sonarSweepPart1Answer() {
-    println(
-        measurementsLargerThanPreviousMeasurement(
-            measurementsFromFile()
-        )
-    )
-}
-
-fun sonarSweepPart2Answer() {
-    println(
-        measurementsInWindowLargerThanInPreviousWindow(
-            measurementsFromFile()
-        )
-    )
-}
-
-fun main() {
-    sonarSweepPart1Answer()
-    sonarSweepPart2Answer()
 }
