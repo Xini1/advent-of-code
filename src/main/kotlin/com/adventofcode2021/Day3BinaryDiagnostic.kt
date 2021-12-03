@@ -14,6 +14,47 @@ fun powerConsumption(binaryInput: Sequence<String>): Int {
     return mostCommonBits.toInt(2) * mostCommonBits.invertBits().toInt(2)
 }
 
+fun lifeSupport(binaryInput: Sequence<String>): Int {
+    val oxygenGeneratorRating = numbersWithMostCommonBitInPosition(
+        binaryInput,
+        0,
+        '0',
+        '1'
+    )
+
+    val co2ScrubberRating = numbersWithMostCommonBitInPosition(
+        binaryInput,
+        0,
+        '1',
+        '0'
+    )
+
+    return oxygenGeneratorRating.toInt(2) * co2ScrubberRating.toInt(2)
+}
+
+fun numbersWithMostCommonBitInPosition(
+    binaryInput: Sequence<String>,
+    position: Int,
+    bitIfMostCommonBitZero: Char,
+    otherBit: Char
+): String {
+    val total = binaryInput.count()
+
+    if (total == 1) {
+        return binaryInput.first()
+    }
+
+    val zeroBits = binaryInput.map { it[position] }
+        .count { it == '0' }
+
+    return numbersWithMostCommonBitInPosition(
+        binaryInput.filter { it[position] == if (zeroBits * 2 > total) bitIfMostCommonBitZero else otherBit },
+        position + 1,
+        bitIfMostCommonBitZero,
+        otherBit
+    )
+}
+
 private fun String.invertBits() =
     asSequence()
         .map {
