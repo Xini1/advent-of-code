@@ -12,3 +12,22 @@ fun floor(parentheses: Sequence<Char>): Int {
         }
     }
 }
+
+fun enterTheBasementPosition(parentheses: Sequence<Char>): Int {
+    val parenthesesList = parentheses.toList()
+    var currentFloor = 0
+
+    for (index in parenthesesList.indices) {
+        when (parenthesesList[index]) {
+            '(' -> currentFloor += 1
+            ')' -> currentFloor -= 1
+            else -> throw IllegalArgumentException()
+        }
+
+        if (currentFloor == -1) {
+            return index + 1
+        }
+    }
+
+    throw IllegalArgumentException()
+}
