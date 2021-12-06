@@ -3,17 +3,8 @@ package com.adventofcode2021
 /**
  * @author Maxim Tereshchenko
  */
-fun winningBoardFinalScore(draws: List<Int>, boardsRawInput: Sequence<List<List<Int>>>): Int {
-    val boards = boardsRawInput.map { rawBoard ->
-        Board(
-            rawBoard.flatMapIndexed { row, rowList ->
-                rowList.mapIndexed { column, value ->
-                    Cell(row, column, value)
-                }
-            }
-        )
-    }
-        .toList()
+fun firstWinningBoardScore(draws: List<Int>, boardsRawInput: Sequence<List<List<Int>>>): Int {
+    val boards = boards(boardsRawInput)
 
     for (draw in draws) {
         for (board in boards) {
@@ -28,7 +19,36 @@ fun winningBoardFinalScore(draws: List<Int>, boardsRawInput: Sequence<List<List<
     throw IllegalArgumentException()
 }
 
-private class Board(private val cells: List<Cell>) {
+fun lastWinningBoardScore(draws: List<Int>, boardsRawInput: Sequence<List<List<Int>>>): Int {
+    var boards = boards(boardsRawInput)
+
+    for (draw in draws) {
+        boards.forEach { it.mark(draw) }
+
+        if (boards.size == 1 && boards.first().isWinning()) {
+            return boards.first().score(draw)
+        }
+
+        boards = boards.filterNot { it.isWinning() }
+    }
+
+    throw IllegalArgumentException()
+}
+
+private fun boards(boardsRawInput: Sequence<List<List<Int>>>) =
+    boardsRawInput.mapIndexed { index, rawBoard ->
+        Board(
+            index + 1,
+            rawBoard.flatMapIndexed { row, rowList ->
+                rowList.mapIndexed { column, value ->
+                    Cell(row, column, value)
+                }
+            }
+        )
+    }
+        .toList()
+
+private class Board(val number: Int, private val cells: List<Cell>) {
 
     fun mark(draw: Int) {
         cells.asSequence()
@@ -66,6 +86,9 @@ private class Board(private val cells: List<Cell>) {
 
     override fun toString(): String {
         val builder = StringBuilder()
+
+        builder.append(number)
+            .append('\n')
 
         for (row in 0 until 5) {
             val cellsInRow = cells.filter { it.isInRow(row) }

@@ -4,14 +4,14 @@ import com.linesFromFile
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-internal class Day4GiantSquidPart1Test {
+internal class Day4GiantSquidPart2Test {
 
     @Test
     fun answer() {
         val lines = linesFromFile("2021/Day4GiantSquidInput").toList()
 
         assertThat(
-            firstWinningBoardScore(
+            lastWinningBoardScore(
                 lines.first()
                     .split(',')
                     .map { it.toInt() },
@@ -28,14 +28,42 @@ internal class Day4GiantSquidPart1Test {
                     }
             )
         )
-            .isEqualTo(89001)
+            .isEqualTo(7296)
     }
 
     @Test
-    fun `given 3 boards, then return 4512`() {
+    fun `given 3 boards, then return second`() {
         assertThat(
-            firstWinningBoardScore(
-                listOf(7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24),
+            lastWinningBoardScore(
+                listOf(
+                    7,
+                    4,
+                    9,
+                    5,
+                    11,
+                    17,
+                    23,
+                    2,
+                    0,
+                    14,
+                    21,
+                    24,
+                    10,
+                    16,
+                    13,
+                    6,
+                    15,
+                    25,
+                    12,
+                    22,
+                    18,
+                    20,
+                    8,
+                    19,
+                    3,
+                    26,
+                    1
+                ),
                 sequenceOf(
                     listOf(
                         listOf(22, 13, 17, 11, 0),
@@ -61,6 +89,6 @@ internal class Day4GiantSquidPart1Test {
                 )
             )
         )
-            .isEqualTo(4512)
+            .isEqualTo(1924)
     }
 }
