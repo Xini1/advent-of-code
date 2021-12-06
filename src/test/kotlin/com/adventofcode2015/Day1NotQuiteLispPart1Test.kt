@@ -13,7 +13,7 @@ internal class Day1NotQuiteLispPart1Test {
     fun answer() {
         assertThat(
             floor(
-                linesFromFile("2015/NotQuiteLispInput")
+                linesFromFile("2015/Day1NotQuiteLispInput")
                     .flatMap { it.asSequence() }
             )
         )

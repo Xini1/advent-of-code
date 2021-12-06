@@ -13,7 +13,7 @@ internal class Day1SonarSweepPart2Test {
     fun answer() {
         assertThat(
             measurementsInWindowLargerThanInPreviousWindow(
-                linesFromFile("2021/SonarSweepInput")
+                linesFromFile("2021/Day1SonarSweepInput")
                     .map { it.toInt() }
             )
         )

@@ -13,7 +13,7 @@ internal class Day2IWasToldThereWouldBeNoMathPart1Test {
     fun answer() {
         assertThat(
             wrappingPaperSquareFeet(
-                linesFromFile("2015/IWasToldThereWouldBeNoMathInput")
+                linesFromFile("2015/Day2IWasToldThereWouldBeNoMathInput")
                     .map { it.split("x") }
                     .map { Triple(it[0].toInt(), it[1].toInt(), it[2].toInt()) }
             )

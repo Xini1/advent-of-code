@@ -11,7 +11,7 @@ internal class Day2DivePart1Test {
 
     @Test
     fun answer() {
-        assertThat(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("2021/DiveInput"), SimplePosition()))
+        assertThat(multiplyFinalHorizontalPositionByFinalDepth(linesFromFile("2021/Day2DiveInput"), SimplePosition()))
             .isEqualTo(1484118)
     }
 

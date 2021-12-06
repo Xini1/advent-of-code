@@ -4,11 +4,11 @@ import com.linesFromFile
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-internal class Day4GiantSquidTest {
+internal class Day4GiantSquidPart1Test {
 
     @Test
     fun answer() {
-        val lines = linesFromFile("2021/GiantSquidInput").toList()
+        val lines = linesFromFile("2021/Day4GiantSquidInput").toList()
 
         assertThat(
             winningBoardFinalScore(
@@ -28,7 +28,7 @@ internal class Day4GiantSquidTest {
                     }
             )
         )
-            .isEqualTo(0)
+            .isEqualTo(89001)
     }
 
     @Test

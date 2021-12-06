@@ -13,7 +13,7 @@ internal class Day3BinaryDiagnosticPart1Test {
     fun answer() {
         assertThat(
             powerConsumption(
-                linesFromFile("2021/BinaryDiagnosticInput")
+                linesFromFile("2021/Day3BinaryDiagnosticInput")
             )
         )
             .isEqualTo(3242606)

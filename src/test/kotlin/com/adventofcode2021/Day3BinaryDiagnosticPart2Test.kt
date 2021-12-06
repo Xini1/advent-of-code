@@ -13,7 +13,7 @@ internal class Day3BinaryDiagnosticPart2Test {
     fun answer() {
         assertThat(
             lifeSupport(
-                linesFromFile("2021/BinaryDiagnosticInput")
+                linesFromFile("2021/Day3BinaryDiagnosticInput")
                     .toList()
                     .asSequence()
             )
