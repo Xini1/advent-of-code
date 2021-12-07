@@ -6,9 +6,14 @@ import kotlin.math.max
 /**
  * @author Maxim Tereshchenko
  */
-fun lineOverlappingPoints(lines: Sequence<String>): Int {
+fun horizontalOrVerticalLinesOverlappingPoints(lines: Sequence<String>) =
+    overlappingPoints(lines) { it.isHorizontalOrVertical() }
+
+fun linesOverlappingPoints(lines: Sequence<String>) = overlappingPoints(lines) { true }
+
+private fun overlappingPoints(lines: Sequence<String>, ventLineFilter: (VentLine) -> Boolean): Int {
     val ventLines = lines.map { VentLine.from(it) }
-        .filter { it.isHorizontalOrVertical() }
+        .filter(ventLineFilter)
         .toList()
 
     val ventField = VentField(

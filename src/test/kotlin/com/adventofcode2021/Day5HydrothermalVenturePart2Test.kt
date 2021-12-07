@@ -7,22 +7,17 @@ import kotlin.test.Test
 /**
  * @author Maxim Tereshchenko
  */
-internal class Day5HydrothermalVenturePart1Test {
+internal class Day5HydrothermalVenturePart2Test {
 
     @Test
     fun answer() {
-        assertThat(
-            horizontalOrVerticalLinesOverlappingPoints(
-                linesFromFile("2021/Day5HydrothermalVentureInput")
-            )
-        )
-            .isEqualTo(5145)
+        assertThat(linesOverlappingPoints(linesFromFile("2021/Day5HydrothermalVentureInput"))).isEqualTo(16518)
     }
 
     @Test
-    fun `given 10 lines, the return 5`() {
+    fun `given 10 lines, the return 12`() {
         assertThat(
-            horizontalOrVerticalLinesOverlappingPoints(
+            linesOverlappingPoints(
                 sequenceOf(
                     "0,9 -> 5,9",
                     "8,0 -> 0,8",
@@ -37,6 +32,6 @@ internal class Day5HydrothermalVenturePart1Test {
                 )
             )
         )
-            .isEqualTo(5)
+            .isEqualTo(12)
     }
 }
