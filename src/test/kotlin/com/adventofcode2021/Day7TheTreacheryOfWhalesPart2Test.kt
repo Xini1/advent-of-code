@@ -7,28 +7,28 @@ import kotlin.test.Test
 /**
  * @author Maxim Tereshchenko
  */
-internal class Day7TheTreacheryOfWhalesPart1Test {
+internal class Day7TheTreacheryOfWhalesPart2Test {
 
     @Test
     fun answer() {
         assertThat(
-            leastFuelToAlignWithConstantBurnRate(
+            leastFuelToAlignWithIncreasingBurnRate(
                 linesFromFile("2021/Day7TheTreacheryOfWhalesInput")
                     .flatMap { it.split(',') }
                     .map { it.toInt() }
                     .toList()
             )
         )
-            .isEqualTo(355521)
+            .isEqualTo(100148777)
     }
 
     @Test
-    fun `given 16 1 2 0 4 2 7 1 2 14, then return 37`() {
+    fun `given 16 1 2 0 4 2 7 1 2 14, then return 168`() {
         assertThat(
-            leastFuelToAlignWithConstantBurnRate(
+            leastFuelToAlignWithIncreasingBurnRate(
                 listOf(16, 1, 2, 0, 4, 2, 7, 1, 2, 14)
             )
         )
-            .isEqualTo(37)
+            .isEqualTo(168)
     }
 }
